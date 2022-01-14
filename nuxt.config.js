@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "frontend",
+    title: "جابنیت",
     htmlAttrs: {
       lang: "en",
     },
@@ -32,11 +32,60 @@ export default {
     "bootstrap-vue/nuxt",
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
+    "@nuxtjs/auth-next",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true,
+  },
+
+  proxy: {
+    "/api/": {
+      target: "http://localhost:8000",
+      pathRewrite: {
+        "^/api": "",
+      },
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // Nuxt auth config: https://auth.nuxtjs.org/
+  auth: {
+    plugins: ["~/plugins/network.js"],
+    strategies: {
+      defaultStrategy: {
+        scheme: "~/schemes/defaultScheme",
+        endpoints: {
+          login: {
+            url: "/api/users/login/",
+            method: "post",
+          },
+          logout: {
+            url: "/api/users/logout/",
+            method: "post",
+          },
+          user: {
+            url: "/api/users/user-info/",
+            method: "get",
+          },
+        },
+        token: {
+          property: "token",
+          global: true,
+          required: true,
+          type: "token",
+        },
+        user: {
+          autoFetch: true,
+        },
+      },
+    },
+  },
+
+  router: {
+    middleware: ["auth"],
+  },
 };

@@ -25,5 +25,6 @@
 <script>
 export default {
   layout: "three_column",
+  auth: false,
 };
 </script>

@@ -4,12 +4,20 @@
       <img src="~/assets/images/profile.jpg" alt="Avatar" class="avatar" />
 
       <NuxtLink to="/">خانه</NuxtLink>
+
       <NuxtLink to="/dashboard">داشبورد</NuxtLink>
+
       <NuxtLink to="/news">اخبار</NuxtLink>
+
       <NuxtLink to="/events">رویدادها</NuxtLink>
+
       <NuxtLink to="/projects">پروژه ها</NuxtLink>
+
       <NuxtLink to="/news">محتوا</NuxtLink>
+
       <NuxtLink to="/about-us">درباره ما</NuxtLink>
+
+      <a v-if="isLoggedIn" href="#" @click="logout">خروج</a>
     </div>
 
     <div class="navbar-left">
@@ -28,5 +36,15 @@
 <script>
 export default {
   name: "TheHeader",
+  computed: {
+    isLoggedIn() {
+      return this.$auth.loggedIn;
+    },
+  },
+  methods: {
+    logout() {
+      this.$network.auth.logout();
+    },
+  },
 };
 </script>
