@@ -1,0 +1,56 @@
+@font-face {
+  font-family: BNazanin;
+  src: url(~/assets/font/BNazanin.woff), url(~/assets/font/B-NAZANIN.TTF);
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eeeeee;
+  direction: rtl;
+  font-family: BNazanin;
+  font-size: 18px;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+/* Top navbar */
+.top-navbar {
+  background-color: #0493a3;
+}
+
+.navbar-right .avatar, .navbar-logo {
+  vertical-align: middle;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+.navbar-right .avatar {
+  margin-left: 20px;
+}
+.navbar-right a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 8px;
+}
+.navbar-right a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar-left a {
+  color: white;
+}
+
+/* Footer */
+.footer-image {
+  width: 150px;
+}
