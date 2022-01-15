@@ -55,6 +55,12 @@ export default {
   // Nuxt auth config: https://auth.nuxtjs.org/
   auth: {
     plugins: ["~/plugins/network.js"],
+    redirect: {
+      login: "/auth/login",
+      logout: "/",
+      callback: "/auth/login",
+      home: "/",
+    },
     strategies: {
       defaultStrategy: {
         scheme: "~/schemes/defaultScheme",
