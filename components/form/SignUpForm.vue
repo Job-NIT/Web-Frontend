@@ -1,9 +1,12 @@
 <template>
-  <form class="mx-4 mt-2 text-center" @submit.prevent="formSubmit">
+  <form
+    class="mx-4 mt-2 text-center py-3 px-4 jn-bg-gradiant jn-border"
+    @submit.prevent="formSubmit"
+  >
     <h5>ایجاد حساب کاربری</h5>
 
     <div class="input-group mb-3 w-50 mx-auto">
-      <select class="form-control text-center" v-model="user_type">
+      <select class="form-control text-center jn-select" v-model="user_type">
         <option value="freelancer">فری لنسر هستم</option>
         <option value="employer">کارفرما هستم</option>
       </select>
@@ -12,7 +15,7 @@
     <div class="input-group mb-3">
       <input
         type="text"
-        class="form-control"
+        class="form-control jn-border"
         placeholder="نام"
         v-model="first_name"
         required
@@ -22,7 +25,7 @@
     <div class="input-group mb-3">
       <input
         type="text"
-        class="form-control"
+        class="form-control jn-border"
         placeholder="نام خانوادگی"
         v-model="last_name"
         required
@@ -32,19 +35,18 @@
     <div class="input-group mb-3">
       <input
         type="text"
-        class="form-control"
+        class="form-control jn-border"
         placeholder=" نام کاربری"
         v-model="username"
         required
       />
-      <span class="input-group-text">@</span>
+      <span class="input-group-text jn-border">@</span>
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text">example.com@</span>
       <input
         type="email"
-        class="form-control"
+        class="form-control jn-border"
         placeholder="ایمیل"
         v-model="email"
         required
@@ -54,18 +56,18 @@
     <div class="input-group mb-3">
       <input
         type="number"
-        class="form-control"
+        class="form-control jn-border"
         placeholder="شماره تلفن"
         v-model="phone_number"
         required
       />
-      <span class="input-group-text">۹۸+</span>
+      <span class="input-group-text jn-border">۹۸+</span>
     </div>
 
     <div v-if="isEmployer" class="input-group mb-3">
       <input
         type="text"
-        class="form-control"
+        class="form-control jn-border"
         placeholder="نام شرکت"
         v-model="company"
         required
@@ -75,7 +77,7 @@
     <div class="input-group mb-3">
       <input
         type="password"
-        class="form-control"
+        class="form-control jn-border"
         placeholder="گذرواژه"
         v-model="password"
         required
@@ -85,20 +87,20 @@
     <div class="input-group mb-3">
       <input
         type="password"
-        class="form-control"
+        class="form-control jn-border"
         placeholder="تکرار گذرواژه"
         v-model="password2"
         required
       />
     </div>
 
-    <button type="submit" class="btn btn-primary mb-3 btn-block">
+    <button type="submit" class="btn mb-3 btn-block jn-btn-primary">
       ثبت نام
     </button>
 
     <p>
       قبلا حساب کاربری ساخته اید؟
-      <NuxtLink to="/auth/login">ورود</NuxtLink>
+      <NuxtLink to="/auth/login" class="jn-text">ورود</NuxtLink>
     </p>
   </form>
 </template>
@@ -157,5 +159,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

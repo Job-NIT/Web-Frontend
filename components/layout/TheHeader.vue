@@ -1,30 +1,31 @@
 <template>
   <nav class="navbar justify-content-between top-navbar">
     <div class="navbar-right mx-2">
-      <img src="~/assets/images/profile.jpg" alt="Avatar" class="avatar" />
+      <NuxtLink to="/profile" class="ml-2">
+        <img
+          v-if="isLoggedIn"
+          :src="profileImage"
+          alt="Avatar"
+          class="avatar"
+        />
+      </NuxtLink>
 
-      <NuxtLink to="/">خانه</NuxtLink>
+      <NuxtLink to="/" class="navbar-link ml-2">خانه</NuxtLink>
 
-      <NuxtLink to="/dashboard">داشبورد</NuxtLink>
+      <NuxtLink to="/dashboard" class="navbar-link ml-2">داشبورد</NuxtLink>
 
-      <NuxtLink to="/news">اخبار</NuxtLink>
+      <NuxtLink to="/projects" class="navbar-link ml-2">پروژه ها</NuxtLink>
 
-      <NuxtLink to="/events">رویدادها</NuxtLink>
+      <NuxtLink to="/about-us" class="navbar-link ml-2">درباره ما</NuxtLink>
 
-      <NuxtLink to="/projects">پروژه ها</NuxtLink>
-
-      <NuxtLink to="/news">محتوا</NuxtLink>
-
-      <NuxtLink to="/about-us">درباره ما</NuxtLink>
-
-      <a v-if="isLoggedIn" href="#" @click="logout">خروج</a>
+      <a v-if="isLoggedIn" href="#" @click="logout" class="navbar-link">خروج</a>
     </div>
 
     <div class="navbar-left">
       <NuxtLink to="/" class="navbar-brand">
         جابنیت
         <img
-          src="~/assets/images/Jobnit_Icon_1300x1300_White.png"
+          src="~/assets/images/jobnit_icon_white.png"
           alt="Logo"
           class="navbar-logo"
         />
@@ -34,11 +35,18 @@
 </template>
 
 <script>
+import noImage from "~/assets/images/no-profile.jpg";
+
 export default {
   name: "TheHeader",
   computed: {
     isLoggedIn() {
       return this.$auth.loggedIn;
+    },
+    profileImage() {
+      const userImage = this.$auth.user.user.image;
+
+      return userImage ? userImage : noImage;
     },
   },
   methods: {

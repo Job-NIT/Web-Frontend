@@ -1,6 +1,7 @@
 @font-face {
   font-family: BNazanin;
-  src: url(~/assets/font/BNazanin.woff), url(~/assets/font/B-NAZANIN.TTF);
+  src: url(~/assets/font/BNazanin.woff) format("woff"),
+    url(~/assets/font/B-NAZANIN.TTF) format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -18,7 +19,8 @@ body {
   font-size: 18px;
 }
 
-a, a:hover {
+a,
+a:hover {
   text-decoration: none;
 }
 
@@ -27,7 +29,8 @@ a, a:hover {
   background-color: #0493a3;
 }
 
-.navbar-right .avatar, .navbar-logo {
+.navbar-right .avatar,
+.navbar-logo {
   vertical-align: middle;
   width: 55px;
   height: 55px;
@@ -36,14 +39,17 @@ a, a:hover {
 .navbar-right .avatar {
   margin-left: 20px;
 }
-.navbar-right a {
+.navbar-right .navbar-link {
   color: white;
   text-decoration: none;
   padding: 8px 8px;
 }
-.navbar-right a:hover {
+.navbar-right .navbar-link:hover {
   background-color: #ddd;
   color: black;
+}
+.navbar-right .navbar-link.nuxt-link-exact-active {
+  border-bottom: 1px solid #fff;
 }
 
 .navbar-left a {
