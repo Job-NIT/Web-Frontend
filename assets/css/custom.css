@@ -1,0 +1,47 @@
+.jn-btn-primary {
+  color: #fff;
+  background-color: #0493a3;
+}
+.jn-btn-primary:hover {
+  color: #fff;
+  background-color: #027885;
+}
+
+.jn-btn-outline {
+  color: #027885;
+  border: 1px solid #0493a3;
+}
+.jn-btn-outline:hover {
+  color: #fff;
+  background-color: #0493a3;
+}
+
+.jn-bg-gradiant {
+  background: linear-gradient(#eeeeee, #bdbdbd);
+}
+
+.jn-border {
+  border-radius: 5px;
+  border: 1px solid #0493a3;
+}
+.jn-border-bottom {
+  border-bottom: 1px solid #0493a3;
+}
+
+.jn-text,
+.jn-text:hover {
+  color: #0493a3;
+}
+
+.jn-select,
+.jn-select:focus {
+  color: #fff;
+  background-color: #0493a3;
+  font-weight: bold;
+}
+
+.jn-card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}

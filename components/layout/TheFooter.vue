@@ -8,13 +8,13 @@
           <h5>تولید توسط شرکت نوآوران</h5>
           <p>تلفن شرکت ۰۲۱-۱۱۱۱۴۵۷۸</p>
           <p>پشتیبانی ۲۴ ساعته</p>
-          <p>آدرس:تهران بلوار مدرس جنب وزراتخانه هند</p>
+          <p>آدرس: بابل - خیابان شریعتی - دانشگاه نوشیروانی</p>
         </div>
 
         <div>
           <img
             class="footer-image"
-            src="~/assets/images/Jobnit_Icon_1300x1300_Green.png"
+            src="~/assets/images/jobnit_icon_green.png"
           />
         </div>
       </div>

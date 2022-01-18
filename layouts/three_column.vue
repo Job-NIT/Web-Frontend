@@ -31,7 +31,7 @@
 <script>
 import TheHeader from "~/components/layout/TheHeader";
 import TheFooter from "~/components/layout/TheFooter";
-import Card from "~/components/Card";
+import Card from "~/components/layout/Card";
 import cards from "~/constants/cards";
 
 export default {

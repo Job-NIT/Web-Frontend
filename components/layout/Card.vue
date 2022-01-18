@@ -1,6 +1,10 @@
 <template>
-  <div class="card text-center my-3">
-    <img class="card-img-top" :src="cardInfo.image" alt="Card image" />
+  <div class="card text-center my-3 jn-bg-gradiant jn-border">
+    <img
+      class="card-img-top jn-card-image jn-border-bottom"
+      :src="cardInfo.image"
+      alt="Card image"
+    />
 
     <div class="card-body">
       <h4 class="card-title">{{ cardInfo.title }}</h4>
@@ -9,7 +13,7 @@
         {{ cardInfo.description }}
       </p>
 
-      <NuxtLink :to="cardInfo.link" class="btn btn-primary btn-block">
+      <NuxtLink :to="cardInfo.link" class="btn btn-block jn-btn-primary">
         {{ goToText }}
       </NuxtLink>
     </div>
@@ -28,7 +32,7 @@ export default {
   computed: {
     goToText() {
       return "برو به " + this.cardInfo.title;
-    }
-  }
+    },
+  },
 };
 </script>

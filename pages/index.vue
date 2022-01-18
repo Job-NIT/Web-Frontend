@@ -5,20 +5,16 @@
     <p>مختلف وکسب درآمد برای افراد بامهارت</p>
 
     <div>
-      <NuxtLink to="/auth/login" class="btn btn-outline-primary w-25">
+      <NuxtLink to="/auth/login" class="btn w-25 jn-btn-primary">
         ورود
       </NuxtLink>
 
-      <NuxtLink to="/auth/signup" class="btn btn-outline-primary w-25">
+      <NuxtLink to="/auth/signup" class="btn w-25 jn-btn-outline">
         ثبت نام
       </NuxtLink>
     </div>
 
-    <img
-      src="~/assets/images/Jobnit_Icon_1300x1300_Green.png"
-      alt=""
-      class="w-75"
-    />
+    <img src="~/assets/images/jobnit_icon_green.png" alt="" class="w-75" />
   </div>
 </template>
 
