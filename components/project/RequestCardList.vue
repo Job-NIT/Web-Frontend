@@ -1,7 +1,11 @@
 <template>
   <div class="row mx-4 mb-4">
-    <div v-for="i in 9" class="col-md-6 col-xl-4" :key="i">
-      <RequestCard />
+    <div
+      v-for="request in requests"
+      class="col-md-6 col-xl-4"
+      :key="request.id"
+    >
+      <RequestCard :request="request" :isOwner="isOwner" />
     </div>
   </div>
 </template>
@@ -12,6 +16,16 @@ import RequestCard from "./RequestCard";
 export default {
   components: {
     RequestCard,
+  },
+  props: {
+    requests: {
+      type: Array,
+      required: true,
+    },
+    isOwner: {
+      type: Boolean,
+      required: true,
+    },
   },
 };
 </script>

@@ -6,7 +6,6 @@
 import AddProjectForm from "~/components/form/AddProjectForm";
 
 export default {
-  auth: false,
   components: {
     AddProjectForm,
   },

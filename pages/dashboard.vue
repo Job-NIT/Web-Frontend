@@ -17,7 +17,6 @@ import CardList from "~/components/project/CardList";
 import AddButton from "~/components/project/AddButton";
 
 export default {
-  auth: false,
   components: {
     CardList,
     AddButton,

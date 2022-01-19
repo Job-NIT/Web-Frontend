@@ -2,15 +2,18 @@
   <div class="card text-center mb-3 jn-border jn-bg-gradiant">
     <img
       class="card-img-top jn-card-image jn-border-bottom"
-      src="~/assets/images/card1.jpg"
       alt="Card image cap"
+      :src="imageSrc"
     />
     <div class="card-body">
-      <h4 class="card-title">عنوان پروژه</h4>
+      <h4 class="card-title">{{ project.title }}</h4>
 
-      <p class="card-text">توضیحات پروژه</p>
+      <p class="card-text">{{ project.detail }}</p>
 
-      <NuxtLink to="/projects/1" class="btn btn-block jn-btn-primary">
+      <NuxtLink
+        :to="`/projects/${project.id}`"
+        class="btn btn-block jn-btn-primary"
+      >
         مشاهده پروژه
       </NuxtLink>
     </div>
@@ -18,5 +21,21 @@
 </template>
 
 <script>
-export default {};
+import NoImage from "~/assets/images/no-image.jpg";
+
+export default {
+  props: {
+    project: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    imageSrc() {
+      const image = this.project.image;
+
+      return image ? image : NoImage;
+    },
+  },
+};
 </script>
