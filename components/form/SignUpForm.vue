@@ -106,6 +106,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { MESSAGES } from "~/constants/message";
+
 export default {
   data() {
     return {
@@ -126,6 +129,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions("message", ["addSuccessMessage", "addErrorMessage"]),
     getSignUpData() {
       const data = {
         user: {
@@ -145,16 +149,27 @@ export default {
 
       return data;
     },
+    handleSuccess(response) {
+      const data = response.data;
+
+      this.$auth.setUserToken(data.token);
+
+      this.addSuccessMessage(MESSAGES.REGISTER.SUCCESS);
+    },
+    handleError(error) {
+      const message =
+        error.response && error.response.status === 400
+          ? MESSAGES.REGISTER.FAILED
+          : MESSAGES.GLOBAL.ERROR;
+
+      this.addErrorMessage(message);
+    },
     formSubmit() {
       const data = this.getSignUpData();
 
       this.$network.auth.register[this.user_type](data)
-        .then((res) => {
-          const response = res.data;
-
-          this.$auth.setUserToken(response.token);
-        })
-        .catch(console.log);
+        .then(this.handleSuccess)
+        .catch(this.handleError);
     },
   },
 };

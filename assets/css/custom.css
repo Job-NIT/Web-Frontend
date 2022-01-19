@@ -45,3 +45,27 @@
   height: 150px;
   object-fit: cover;
 }
+
+.jn-msg-list {
+  position: fixed;
+  top: 100px;
+  right: 0;
+  padding: 0 20px;
+  z-index: 1000;
+  width: 30%;
+}
+@media screen and (max-width: 1200px) {
+  .jn-msg-list {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .jn-msg-list {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .jn-msg-list {
+    width: 100%;
+  }
+}

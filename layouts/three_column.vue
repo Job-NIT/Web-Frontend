@@ -2,6 +2,8 @@
   <div>
     <TheHeader />
 
+    <TheMessageList />
+
     <main class="my-3">
       <div class="container">
         <div class="row justify-content-center">
@@ -30,6 +32,7 @@
 
 <script>
 import TheHeader from "~/components/layout/TheHeader";
+import TheMessageList from "~/components/layout/TheMessageList";
 import TheFooter from "~/components/layout/TheFooter";
 import Card from "~/components/layout/Card";
 import cards from "~/constants/cards";
@@ -37,6 +40,7 @@ import cards from "~/constants/cards";
 export default {
   components: {
     TheHeader,
+    TheMessageList,
     TheFooter,
     Card,
   },
