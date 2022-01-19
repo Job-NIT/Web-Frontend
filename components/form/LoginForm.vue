@@ -38,6 +38,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { MESSAGES } from "~/constants/message";
+
 export default {
   data() {
     return {
@@ -46,13 +49,28 @@ export default {
     };
   },
   methods: {
+    ...mapActions("message", ["addSuccessMessage", "addErrorMessage"]),
+    handleSuccess(response) {
+      this.addSuccessMessage(MESSAGES.LOGIN.SUCCESS);
+    },
+    handleError(error) {
+      const message =
+        error.response && error.response.status === 400
+          ? MESSAGES.LOGIN.FAILED
+          : MESSAGES.GLOBAL.ERROR;
+
+      this.addErrorMessage(message);
+    },
     submitForm() {
       const data = {
         username: this.username,
         password: this.password,
       };
 
-      this.$network.auth.login(data).then(console.log).catch(console.log);
+      this.$network.auth
+        .login(data)
+        .then(this.handleSuccess)
+        .catch(this.handleError);
     },
   },
 };
