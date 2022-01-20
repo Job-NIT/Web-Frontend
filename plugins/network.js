@@ -29,12 +29,18 @@ export default function ({ $axios, $auth }, inject) {
     create: (data) => requests.post("/api/projects/list/", data),
     get: (id) => requests.get(`/api/projects/${id}/`),
     delete: (id) => requests.get(`/api/projects/${id}/`),
+    employer: () => requests.get("/api/projects/list/employer/"),
+    freelancer: () => requests.get("/api/projects/list/freelancer/"),
   };
 
   network.projectRequest = {
     list: (id) => requests.get(`/api/projects/${id}/request/`),
     create: (id) => requests.post(`/api/projects/${id}/request/`),
     remove: (id) => requests.post(`/api/projects/${id}/request/remove/`),
+  };
+
+  network.category = {
+    list: () => requests.get("/api/projects/categories/"),
   };
 
   inject("network", network);

@@ -1,10 +1,18 @@
 <template>
-  <form class="card w-50 mx-auto jn-border">
-    <div>
+  <form @submit.prevent="submitForm" class="card w-50 mx-auto jn-border">
+    <div @click="handleClick">
       <img
-        class="card-img-top img-fluid jn-border-bottom"
-        src="~/assets/images/no-image.jpg"
+        class="card-img-top img-fluid jn-border-bottom jn-detail-card-image"
+        :src="imageSrc"
         alt="Card image"
+      />
+
+      <input
+        @change="handleChange"
+        type="file"
+        accept="image/*"
+        ref="fileChooser"
+        hidden
       />
     </div>
 
@@ -15,15 +23,26 @@
             type="text"
             class="form-control jn-border"
             placeholder="عنون پروژه"
+            v-model="title"
             required
           />
         </div>
 
-        <!-- <div class="col-md-6">
-            <select class="form-control text-center" required>
-              <option selected>دسته بندی</option>
-            </select>
-          </div> -->
+        <div class="col-md-6">
+          <select
+            class="form-control text-center"
+            required
+            v-model="category_id"
+          >
+            <option
+              v-for="category in categories"
+              :key="category.id"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <!-- <div class="form-group my-3">
@@ -39,6 +58,7 @@
         <textarea
           class="form-control jn-border"
           placeholder="توضیحات"
+          v-model="detail"
           rows="4"
         ></textarea>
       </div>
@@ -49,6 +69,8 @@
             type="datetime-local"
             class="form-control jn-border"
             placeholder="تاریخ پایان پروژه"
+            v-model="dead_line"
+            required
           />
         </div>
 
@@ -59,6 +81,7 @@
               class="form-control jn-border"
               min="0"
               placeholder="مبلغ"
+              v-model="budget"
               required
             />
             <span class="input-group-text jn-border">تومان</span>
@@ -74,5 +97,63 @@
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+import { MESSAGES } from "~/constants/message";
+import noImage from "~/assets/images/no-image.jpg";
+
+export default {
+  data() {
+    return {
+      categories: [],
+      image: null,
+      title: "",
+      detail: "",
+      dead_line: "",
+      budget: "",
+      category_id: "",
+    };
+  },
+  computed: {
+    imageSrc() {
+      return this.image ? URL.createObjectURL(this.image) : noImage;
+    },
+  },
+  methods: {
+    ...mapActions("message", ["addSuccessMessage", "addErrorMessage"]),
+    handleClick() {
+      this.$refs.fileChooser.click();
+    },
+    handleChange() {
+      this.image = this.$refs.fileChooser.files[0];
+    },
+    submitForm() {
+      const formData = new FormData();
+      formData.append("image", this.image);
+      formData.append("title", this.title);
+      formData.append("detail", this.detail);
+      formData.append("dead_line", this.dead_line);
+      formData.append("budget", this.budget);
+      formData.append("category_id", Number(this.category_id));
+
+      this.$network.project
+        .create(formData)
+        .then((response) => {
+          this.addSuccessMessage(MESSAGES.PROJECT.SUCCESS);
+        })
+        .catch((error) => {
+          this.addErrorMessage(MESSAGES.PROJECT.FAILED);
+        });
+    },
+  },
+  mounted() {
+    this.$network.category
+      .list()
+      .then((response) => {
+        this.categories = response.data;
+      })
+      .catch((error) => {
+        this.addErrorMessage(MESSAGES.GLOBAL.LOADING_ERROR);
+      });
+  },
+};
 </script>

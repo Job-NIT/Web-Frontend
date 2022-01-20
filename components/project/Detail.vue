@@ -1,10 +1,16 @@
 <template>
   <div v-if="project" class="card jn-border">
-    <img
-      class="card-img-top img-fluid jn-border-bottom jn-detail-card-image"
-      :src="imageSrc"
-      alt="Card image"
-    />
+    <div class="position-relative">
+      <img
+        class="card-img-top img-fluid jn-border-bottom jn-detail-card-image"
+        :src="imageSrc"
+        alt="Card image"
+      />
+
+      <div class="jn-card-category">
+        {{ project.category.name }}
+      </div>
+    </div>
 
     <div class="card-body jn-bg-gradiant">
       <div class="text-right">

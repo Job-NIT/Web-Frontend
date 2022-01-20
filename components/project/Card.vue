@@ -1,10 +1,16 @@
 <template>
   <div class="card text-center mb-3 jn-border jn-bg-gradiant">
-    <img
-      class="card-img-top jn-card-image jn-border-bottom"
-      alt="Card image cap"
-      :src="imageSrc"
-    />
+    <div class="position-relative">
+      <img
+        class="card-img-top jn-card-image jn-border-bottom"
+        alt="Card image cap"
+        :src="imageSrc"
+      />
+
+      <div class="jn-card-category">
+        {{ project.category.name }}
+      </div>
+    </div>
     <div class="card-body">
       <h4 class="card-title">{{ project.title }}</h4>
 

@@ -2,7 +2,7 @@
   <div class="card text-center mb-3 jn-border jn-bg-gradiant">
     <img
       class="card-img-top jn-card-image jn-border-bottom"
-      src="~/assets/images/card1.jpg"
+      :src="imageSrc"
       alt="Card image cap"
     />
     <div class="card-body">
@@ -25,6 +25,9 @@
 </template>
 
 <script>
+import noImage from "~/assets/images/no-image.jpg";
+import { backend_url } from "~/constants/backend";
+
 export default {
   props: {
     request: {
@@ -42,6 +45,11 @@ export default {
     },
     full_name() {
       return `${this.freelancer.first_name} ${this.freelancer.last_name}`;
+    },
+    imageSrc() {
+      const image = this.freelancer.image;
+
+      return image ? `${backend_url}${image}` : noImage;
     },
   },
 };

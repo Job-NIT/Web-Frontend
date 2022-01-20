@@ -1,25 +1,31 @@
 <template>
   <div>
-    <h4 class="font-weight-bold text-right my-2 mr-4">پروژه های درحال انجام</h4>
-    <CardList />
+    <Freelancer v-if="isFreelancer" />
 
-    <h4 class="font-weight-bold text-right my-2 mr-4">
-      پروژه های در صف انتظار
-    </h4>
-    <CardList />
+    <Employer v-else />
 
     <AddButton />
   </div>
 </template>
 
 <script>
-import CardList from "~/components/project/CardList";
 import AddButton from "~/components/project/AddButton";
+import Freelancer from "~/components/dashboard/Freelancer";
+import Employer from "~/components/dashboard/Employer";
+import { TYPE } from "~/constants/user";
 
 export default {
   components: {
-    CardList,
     AddButton,
+    Freelancer,
+    Employer,
+  },
+  computed: {
+    isFreelancer() {
+      const user = this.$auth.user;
+
+      return user.user.user_type === TYPE.FREELANCER;
+    },
   },
 };
 </script>
