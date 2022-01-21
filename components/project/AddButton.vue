@@ -1,5 +1,6 @@
 <template>
   <NuxtLink
+    v-if="isEmployer"
     to="/projects/add"
     class="project-add-button btn rounded-circle jn-btn-primary"
   >
@@ -8,7 +9,17 @@
 </template>
 
 <script>
-export default {};
+import { TYPE } from "~/constants/user";
+
+export default {
+  computed: {
+    isEmployer() {
+      const user = this.$auth.user;
+
+      return user.user.user_type === TYPE.EMPLOYER;
+    },
+  },
+};
 </script>
 
 <style scoped>

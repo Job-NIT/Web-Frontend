@@ -45,6 +45,22 @@
   height: 150px;
   object-fit: cover;
 }
+.jn-detail-card-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.jn-card-category {
+  position: absolute;
+  right: 50%;
+  bottom: 15px;
+  padding: 0 10px;
+  border-radius: 15px;
+  color: #fff;
+  background-color: #6e6e6e;
+  transform: translateX(50%);
+}
 
 .jn-msg-list {
   position: fixed;

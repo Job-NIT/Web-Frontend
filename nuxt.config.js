@@ -1,3 +1,5 @@
+import { backend_url } from "./constants/backend";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -42,7 +44,7 @@ export default {
 
   proxy: {
     "/api/": {
-      target: "http://localhost:8000",
+      target: backend_url,
       pathRewrite: {
         "^/api": "",
       },
@@ -83,6 +85,7 @@ export default {
           global: true,
           required: true,
           type: "token",
+          maxAge: 86400,
         },
         user: {
           autoFetch: true,
