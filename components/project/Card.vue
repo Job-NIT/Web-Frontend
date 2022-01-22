@@ -14,7 +14,7 @@
     <div class="card-body">
       <h4 class="card-title">{{ project.title }}</h4>
 
-      <p class="card-text">{{ project.detail }}</p>
+      <p class="card-text text-truncate">{{ project.detail }}</p>
 
       <NuxtLink
         :to="`/projects/${project.id}`"

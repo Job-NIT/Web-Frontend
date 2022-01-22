@@ -5,7 +5,11 @@
       class="col-md-6 col-xl-4"
       :key="request.id"
     >
-      <RequestCard :request="request" :isOwner="isOwner" />
+      <RequestCard
+        @acceptRequest="handleAcceptRequest"
+        :request="request"
+        :isOwner="isOwner"
+      />
     </div>
   </div>
 </template>
@@ -25,6 +29,11 @@ export default {
     isOwner: {
       type: Boolean,
       required: true,
+    },
+  },
+  methods: {
+    handleAcceptRequest(freelancer) {
+      this.$emit("acceptRequest", freelancer);
     },
   },
 };

@@ -1,46 +1,39 @@
 export default function ({ $axios, $auth }, inject) {
-  const requests = {
-    get: (url, config) => $axios.get(url, config),
-    post: (url, data, config) => $axios.post(url, data, config),
-    put: (url, data, config) => $axios.put(url, data, config),
-    patch: (url, data, config) => $axios.patch(url, data, config),
-    delete: (url, config) => $axios.delete(url, config),
-  };
-
   const network = {};
 
   network.auth = {
     register: {
-      employer: (data) => requests.post("/api/users/register/employer/", data),
+      employer: (data) => $axios.post("/api/users/register/employer/", data),
       freelancer: (data) =>
-        requests.post("/api/users/register/freelancer/", data),
+        $axios.post("/api/users/register/freelancer/", data),
     },
     login: (data) => $auth.loginWith("defaultStrategy", { data }),
     logout: () => $auth.logout(),
   };
 
   network.profile = {
-    get: (id) => requests.get(`/api/users/profile/${id}/`),
-    edit: (data) => requests.patch(`/api/users/profile/`, data),
+    get: (id) => $axios.get(`/api/users/profile/${id}/`),
+    edit: (data) => $axios.patch(`/api/users/profile/`, data),
   };
 
   network.project = {
-    list: () => requests.get("/api/projects/list/"),
-    create: (data) => requests.post("/api/projects/list/", data),
-    get: (id) => requests.get(`/api/projects/${id}/`),
-    delete: (id) => requests.get(`/api/projects/${id}/`),
-    employer: () => requests.get("/api/projects/list/employer/"),
-    freelancer: () => requests.get("/api/projects/list/freelancer/"),
+    list: () => $axios.get("/api/projects/list/"),
+    create: (data) => $axios.post("/api/projects/list/", data),
+    get: (id) => $axios.get(`/api/projects/${id}/`),
+    delete: (id) => $axios.get(`/api/projects/${id}/`),
+    employer: () => $axios.get("/api/projects/list/employer/"),
+    freelancer: () => $axios.get("/api/projects/list/freelancer/"),
   };
 
   network.projectRequest = {
-    list: (id) => requests.get(`/api/projects/${id}/request/`),
-    create: (id) => requests.post(`/api/projects/${id}/request/`),
-    remove: (id) => requests.post(`/api/projects/${id}/request/remove/`),
+    list: (id) => $axios.get(`/api/projects/${id}/request/`),
+    create: (id) => $axios.post(`/api/projects/${id}/request/`),
+    remove: (id) => $axios.post(`/api/projects/${id}/request/remove/`),
+    accept: (req_id) => $axios.post(`/api/projects/request/${req_id}/accept/`),
   };
 
   network.category = {
-    list: () => requests.get("/api/projects/categories/"),
+    list: () => $axios.get("/api/projects/categories/"),
   };
 
   inject("network", network);

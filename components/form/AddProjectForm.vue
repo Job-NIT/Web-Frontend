@@ -126,9 +126,21 @@ export default {
     handleChange() {
       this.image = this.$refs.fileChooser.files[0];
     },
+    resetForm() {
+      this.image = null;
+      this.title = "";
+      this.detail = "";
+      this.dead_line = "";
+      this.budget = "";
+      this.category_id = "";
+    },
     submitForm() {
       const formData = new FormData();
-      formData.append("image", this.image);
+
+      if (this.image) {
+        formData.append("image", this.image);
+      }
+
       formData.append("title", this.title);
       formData.append("detail", this.detail);
       formData.append("dead_line", this.dead_line);
@@ -139,6 +151,8 @@ export default {
         .create(formData)
         .then((response) => {
           this.addSuccessMessage(MESSAGES.PROJECT.SUCCESS);
+
+          this.resetForm();
         })
         .catch((error) => {
           this.addErrorMessage(MESSAGES.PROJECT.FAILED);
