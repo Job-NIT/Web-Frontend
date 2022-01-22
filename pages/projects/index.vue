@@ -2,7 +2,7 @@
   <div>
     <div class="container my-4">
       <form>
-        <div class="input-group mx-5">
+        <div class="input-group">
           <input
             type="search"
             class="form-control jn-border jn-bg-gradiant"

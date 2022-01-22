@@ -1,7 +1,11 @@
 <template>
   <div class="row mx-0 justify-content-center">
     <div class="col-lg-6 mb-5">
-      <Detail :project="project" />
+      <Detail
+        @sendRequest="handleSendRequest"
+        @removeRequest="handleRemoveRequest"
+        :project="project"
+      />
     </div>
 
     <div v-if="requestList.length" class="col-lg-6">
@@ -9,7 +13,11 @@
         لیست درخواست های ثبت شده
       </h4>
 
-      <RequestCardList :requests="requestList" :isOwner="isProjectOwner" />
+      <RequestCardList
+        @acceptRequest="handleAcceptRequest"
+        :requests="requestList"
+        :isOwner="isProjectOwner"
+      />
     </div>
   </div>
 </template>
@@ -50,23 +58,37 @@ export default {
     handleError(error) {
       this.addErrorMessage(MESSAGES.GLOBAL.LOADING_ERROR);
     },
+    handleAcceptRequest(freelancer) {
+      this.project.freelancer = freelancer;
+      this.requestList = [];
+    },
+    handleSendRequest(request) {
+      this.requestList.push(request);
+    },
+    handleRemoveRequest(freelancer_id) {
+      const index = this.requestList.findIndex(
+        (request) => request.freelancer.id === freelancer_id
+      );
+
+      this.requestList.splice(index, 1);
+    },
   },
-  mounted() {
+  async mounted() {
     const id = this.$route.params.id;
 
-    this.$network.project
-      .get(id)
-      .then((response) => {
-        this.project = response.data;
-      })
-      .catch(this.handleError);
+    try {
+      this.project = await this.$network.project
+        .get(id)
+        .then((response) => response.data);
 
-    this.$network.projectRequest
-      .list(id)
-      .then((response) => {
-        this.requestList = response.data;
-      })
-      .catch(this.handleError);
+      if (this.project && !this.project.freelancer) {
+        this.$network.projectRequest.list(id).then((response) => {
+          this.requestList = response.data;
+        });
+      }
+    } catch (error) {
+      this.handleError(error);
+    }
   },
 };
 </script>

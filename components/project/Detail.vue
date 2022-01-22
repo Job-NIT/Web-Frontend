@@ -32,9 +32,7 @@
           </li>
         </ul> -->
 
-        <h4 class="card-title">توضیحات</h4>
-
-        <p class="card-text mb-5">
+        <p class="card-text mb-5 jn-project-detail">
           {{ project.detail }}
         </p>
 
@@ -56,11 +54,26 @@
       </div>
 
       <div class="my-3">
+        <div v-if="isWaiting && isFreelancer">
+          <button
+            @click="sendRequest"
+            class="btn w-50 d-block mx-auto jn-btn-primary mb-2"
+          >
+            فرستادن درخواست
+          </button>
+          <button
+            @click="removeRequest"
+            class="btn w-50 d-block mx-auto btn-danger mb-2"
+          >
+            حذف درخواست
+          </button>
+        </div>
+
         <NuxtLink
           to="/projects"
           class="btn w-50 d-block mx-auto jn-btn-primary"
         >
-          بازگشت
+          بازگشت به لیست پروژه ها
         </NuxtLink>
       </div>
     </div>
@@ -69,10 +82,16 @@
 
 <script>
 import noImage from "~/assets/images/no-image.jpg";
+import { TYPE } from "~/constants/user";
+import { MESSAGES } from "~/constants/message";
+import { mapActions } from "vuex";
 
 export default {
   props: ["project"],
   computed: {
+    id() {
+      return this.project.id;
+    },
     imageSrc() {
       const image = this.project.image;
 
@@ -80,6 +99,44 @@ export default {
     },
     time() {
       return new Date(this.project.dead_line).toLocaleString();
+    },
+    isFreelancer() {
+      const user = this.$auth.user;
+
+      return user.user.user_type === TYPE.FREELANCER;
+    },
+    isWaiting() {
+      return !this.project.freelancer;
+    },
+  },
+  methods: {
+    ...mapActions("message", ["addSuccessMessage", "addErrorMessage"]),
+    handleError(error) {
+      this.addErrorMessage(MESSAGES.PROJECT_REQUEST.FAILED);
+    },
+    sendRequest() {
+      this.$network.projectRequest
+        .create(this.id)
+        .then((response) => {
+          const request = response.data;
+
+          this.addSuccessMessage(MESSAGES.PROJECT_REQUEST.CREATED);
+
+          this.$emit("sendRequest", request);
+        })
+        .catch(this.handleError);
+    },
+    removeRequest() {
+      const user = this.$auth.user;
+
+      this.$network.projectRequest
+        .remove(this.id)
+        .then((response) => {
+          this.addSuccessMessage(MESSAGES.PROJECT_REQUEST.REMOVED);
+
+          this.$emit("removeRequest", user.user.id);
+        })
+        .catch(this.handleError);
     },
   },
 };

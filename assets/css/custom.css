@@ -51,6 +51,10 @@
   object-fit: cover;
 }
 
+.jn-project-detail {
+  white-space: pre-line;
+}
+
 .jn-card-category {
   position: absolute;
   right: 50%;

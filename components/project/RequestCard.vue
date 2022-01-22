@@ -17,7 +17,11 @@
         مشاهده پروفایل
       </NuxtLink>
 
-      <button v-if="isOwner" class="btn btn-block jn-btn-primary">
+      <button
+        v-if="isOwner"
+        @click="acceptRequest"
+        class="btn btn-block jn-btn-primary"
+      >
         قبول درخواست
       </button>
     </div>
@@ -27,6 +31,8 @@
 <script>
 import noImage from "~/assets/images/no-image.jpg";
 import { backend_url } from "~/constants/backend";
+import { MESSAGES } from "~/constants/message";
+import { mapActions } from "vuex";
 
 export default {
   props: {
@@ -50,6 +56,23 @@ export default {
       const image = this.freelancer.image;
 
       return image ? `${backend_url}${image}` : noImage;
+    },
+  },
+  methods: {
+    ...mapActions("message", ["addSuccessMessage", "addErrorMessage"]),
+    acceptRequest() {
+      const id = this.request.id;
+
+      this.$network.projectRequest
+        .accept(id)
+        .then((response) => {
+          this.addSuccessMessage(MESSAGES.PROJECT_REQUEST.ACCEPTED);
+
+          this.$emit("acceptRequest", this.freelancer);
+        })
+        .catch((error) => {
+          this.addErrorMessage(MESSAGES.PROJECT_REQUEST.FAILED);
+        });
     },
   },
 };
