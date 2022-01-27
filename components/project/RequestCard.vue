@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import noImage from "~/assets/images/no-image.jpg";
+import noImage from "~/assets/images/no-profile.jpg";
 import { backend_url } from "~/constants/backend";
 import { MESSAGES } from "~/constants/message";
 import { mapActions } from "vuex";
