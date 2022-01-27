@@ -27,6 +27,9 @@
 .jn-border-bottom {
   border-bottom: 1px solid #0493a3;
 }
+.jn-border-left {
+  border-left: 1px solid #0493a3;
+}
 
 .jn-text,
 .jn-text:hover {

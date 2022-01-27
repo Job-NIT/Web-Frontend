@@ -45,15 +45,6 @@
         </div>
       </div>
 
-      <!-- <div class="form-group my-3">
-          <input
-            type="text"
-            class="form-control form-contro1"
-            placeholder="مهارت ها"
-            required
-          />
-        </div> -->
-
       <div class="form-group my-4">
         <textarea
           class="form-control jn-border"

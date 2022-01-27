@@ -18,25 +18,11 @@
           {{ project.title }}
         </h4>
 
-        <!-- <h4 class="card-title">مهارت</h4>
-
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <h6 class="font-weight-bold">html</h6>
-          </li>
-          <li class="list-inline-item">
-            <h6 class="font-weight-bold">css</h6>
-          </li>
-          <li class="list-inline-item">
-            <h6 class="font-weight-bold">js</h6>
-          </li>
-        </ul> -->
-
         <p class="card-text mb-5 jn-project-detail">
           {{ project.detail }}
         </p>
 
-        <div class="row mx-0">
+        <div class="row mx-0 mb-3">
           <div class="col">
             <h6>تاریخ پایان پروژه</h6>
             <time class="d-block font-weight-bold text-center">
@@ -50,6 +36,12 @@
               {{ project.budget }} تومان
             </span>
           </div>
+        </div>
+
+        <div v-if="!isWaiting">
+          <div class="mb-2">در حال انجام توسط:</div>
+
+          <Freelancer :freelancer="project.freelancer" />
         </div>
       </div>
 
@@ -85,8 +77,12 @@ import noImage from "~/assets/images/no-image.jpg";
 import { TYPE } from "~/constants/user";
 import { MESSAGES } from "~/constants/message";
 import { mapActions } from "vuex";
+import Freelancer from "./Freelancer";
 
 export default {
+  components: {
+    Freelancer,
+  },
   props: ["project"],
   computed: {
     id() {
