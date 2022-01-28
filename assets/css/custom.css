@@ -92,3 +92,9 @@
     width: 100%;
   }
 }
+
+.jn-edit-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}

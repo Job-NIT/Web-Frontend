@@ -14,6 +14,7 @@ export default function ({ $axios, $auth }, inject) {
   network.profile = {
     get: (id) => $axios.get(`/api/users/profile/${id}/`),
     edit: (data) => $axios.patch(`/api/users/profile/`, data),
+    image: (data) => $axios.put("/api/users/profile-image/", data),
   };
 
   network.project = {
