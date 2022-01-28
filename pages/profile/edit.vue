@@ -1,5 +1,15 @@
-<template></template>
+<template>
+  <div class="container">
+    <EditProfileForm />
+  </div>
+</template>
 
 <script>
-export default {};
+import EditProfileForm from "~/components/form/EditProfileForm";
+
+export default {
+  components: {
+    EditProfileForm,
+  },
+};
 </script>
