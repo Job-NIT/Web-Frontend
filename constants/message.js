@@ -20,6 +20,8 @@ export const MESSAGES = {
   PROJECT: {
     SUCCESS: "پروژه با موفقیت ساخته شد",
     FAILED: "مشکلی در ساخت پروژه وجود دارد",
+    REMOVED: "پروژه با موفقیت حذف شد",
+    REMOVE_FAILED: "مشکلی در حذف پروژه بوجود آمده",
   },
   PROJECT_REQUEST: {
     ACCEPTED: "درخواست مورد نظر با موفقیت قبول شد",

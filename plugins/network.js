@@ -21,7 +21,7 @@ export default function ({ $axios, $auth }, inject) {
     list: () => $axios.get("/api/projects/list/"),
     create: (data) => $axios.post("/api/projects/list/", data),
     get: (id) => $axios.get(`/api/projects/${id}/`),
-    delete: (id) => $axios.get(`/api/projects/${id}/`),
+    delete: (id) => $axios.delete(`/api/projects/${id}/`),
     employer: () => $axios.get("/api/projects/list/employer/"),
     freelancer: () => $axios.get("/api/projects/list/freelancer/"),
   };

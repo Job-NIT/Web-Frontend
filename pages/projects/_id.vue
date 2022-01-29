@@ -5,6 +5,7 @@
         @sendRequest="handleSendRequest"
         @removeRequest="handleRemoveRequest"
         :project="project"
+        :isOwner="isProjectOwner"
       />
     </div>
 
