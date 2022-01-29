@@ -1,24 +1,33 @@
 <template>
   <nav class="navbar justify-content-between top-navbar">
     <div class="navbar-right mx-2">
-      <NuxtLink to="/profile" class="ml-2">
-        <img
-          v-if="isLoggedIn"
-          :src="profileImage"
-          alt="Avatar"
-          class="avatar"
-        />
-      </NuxtLink>
+      <div v-if="isLoggedIn">
+        <NuxtLink to="/profile" class="ml-2">
+          <img :src="profileImage" alt="Avatar" class="avatar" />
+        </NuxtLink>
 
-      <NuxtLink to="/" class="navbar-link ml-2">خانه</NuxtLink>
+        <NuxtLink to="/" class="navbar-link ml-2">خانه</NuxtLink>
 
-      <NuxtLink to="/dashboard" class="navbar-link ml-2">داشبورد</NuxtLink>
+        <NuxtLink to="/dashboard" class="navbar-link ml-2">داشبورد</NuxtLink>
 
-      <NuxtLink to="/projects" class="navbar-link ml-2">پروژه ها</NuxtLink>
+        <NuxtLink to="/projects" class="navbar-link ml-2">پروژه ها</NuxtLink>
 
-      <NuxtLink to="/about-us" class="navbar-link ml-2">درباره ما</NuxtLink>
+        <NuxtLink to="/about-us" class="navbar-link ml-2">درباره ما</NuxtLink>
 
-      <a v-if="isLoggedIn" href="#" @click="logout" class="navbar-link">خروج</a>
+        <a href="javascript:void()" @click="logout" class="navbar-link">
+          خروج
+        </a>
+      </div>
+
+      <div v-else>
+        <NuxtLink to="/" class="navbar-link ml-2">خانه</NuxtLink>
+
+        <NuxtLink to="/auth/login" class="navbar-link ml-2">ورود</NuxtLink>
+
+        <NuxtLink to="/auth/signup" class="navbar-link ml-2">ثبت نام</NuxtLink>
+
+        <NuxtLink to="/about-us" class="navbar-link ml-2">درباره ما</NuxtLink>
+      </div>
     </div>
 
     <div class="navbar-left">
