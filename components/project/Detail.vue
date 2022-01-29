@@ -61,6 +61,15 @@
           </button>
         </div>
 
+        <div v-if="isOwner">
+          <button
+            @click="removeProject"
+            class="btn w-50 d-block mx-auto btn-danger mb-2"
+          >
+            حذف پروژه
+          </button>
+        </div>
+
         <NuxtLink
           to="/projects"
           class="btn w-50 d-block mx-auto jn-btn-primary"
@@ -83,7 +92,7 @@ export default {
   components: {
     Freelancer,
   },
-  props: ["project"],
+  props: ["project", "isOwner"],
   computed: {
     id() {
       return this.project.id;
@@ -133,6 +142,23 @@ export default {
           this.$emit("removeRequest", user.user.id);
         })
         .catch(this.handleError);
+    },
+    removeProject() {
+      const confirm = window.confirm("آیا از حذف مطمئن هستید؟");
+
+      if (!confirm) return;
+
+      const id = this.project.id;
+      this.$network.project
+        .delete(id)
+        .then((response) => {
+          this.addSuccessMessage(MESSAGES.PROJECT.REMOVED);
+
+          this.$router.replace("/projects");
+        })
+        .catch((error) => {
+          this.addErrorMessage(MESSAGES.PROJECT_REQUEST.REMOVE_FAILED);
+        });
     },
   },
 };
