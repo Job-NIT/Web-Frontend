@@ -18,6 +18,13 @@
           {{ project.title }}
         </h4>
 
+        <div>
+          <span>کارفرما:</span>
+          <NuxtLink :to="`/profile/${employer.id}`">
+            {{ employerName }}
+          </NuxtLink>
+        </div>
+
         <p class="card-text mb-5 jn-project-detail">
           {{ project.detail }}
         </p>
@@ -112,6 +119,12 @@ export default {
     },
     isWaiting() {
       return !this.project.freelancer;
+    },
+    employer() {
+      return this.project.employer;
+    },
+    employerName() {
+      return `${this.employer.first_name} ${this.employer.last_name}`;
     },
   },
   methods: {
