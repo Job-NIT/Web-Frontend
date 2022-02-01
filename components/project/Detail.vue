@@ -40,7 +40,7 @@
           <div class="col">
             <h6>مبلغ پرداختی</h6>
             <span class="d-block font-weight-bold text-center">
-              {{ project.budget }} تومان
+              {{ project.budget.toLocaleString() }} تومان
             </span>
           </div>
         </div>
