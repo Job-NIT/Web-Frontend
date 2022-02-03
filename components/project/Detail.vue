@@ -110,7 +110,11 @@ export default {
       return image ? image : noImage;
     },
     time() {
-      return new Date(this.project.dead_line).toLocaleString();
+      return new Date(this.project.dead_line).toLocaleDateString("fa-IR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
     },
     isFreelancer() {
       const user = this.$auth.user;
@@ -167,7 +171,7 @@ export default {
         .then((response) => {
           this.addSuccessMessage(MESSAGES.PROJECT.REMOVED);
 
-          this.$router.replace("/projects");
+          this.$router.replace("/dashboard");
         })
         .catch((error) => {
           this.addErrorMessage(MESSAGES.PROJECT_REQUEST.REMOVE_FAILED);

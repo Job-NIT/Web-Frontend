@@ -17,8 +17,8 @@
     </div>
 
     <div class="card-body jn-bg-gradiant">
-      <div class="row justify-content-center mb-4">
-        <div class="col-md-6">
+      <div class="row justify-content-center">
+        <div class="col-md-6 mb-3">
           <input
             type="text"
             class="form-control jn-border"
@@ -28,12 +28,14 @@
           />
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
           <select
             class="form-control text-center"
             required
             v-model="category_id"
           >
+            <option value="" disabled hidden selected>دسته بندی پروژه</option>
+
             <option
               v-for="category in categories"
               :key="category.id"
@@ -45,7 +47,7 @@
         </div>
       </div>
 
-      <div class="form-group my-4">
+      <div class="form-group mb-4">
         <textarea
           class="form-control jn-border"
           placeholder="توضیحات"
@@ -54,18 +56,21 @@
         ></textarea>
       </div>
 
-      <div class="row justify-content-center my-4">
-        <div class="col-md-4">
-          <input
-            type="datetime-local"
-            class="form-control jn-border"
-            placeholder="تاریخ پایان پروژه"
+      <div class="row justify-content-center">
+        <div class="col-lg-4 mb-3">
+          <date-picker
+            mode="single"
+            color="green"
             v-model="dead_line"
+            input-class="pdp-input w-100"
+            placeholder="تاریخ پایان"
+            :disable="disableDates"
+            :column="1"
             required
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-lg-4 mb-3">
           <div class="input-group">
             <input
               type="number"
@@ -111,19 +116,14 @@ export default {
   },
   methods: {
     ...mapActions("message", ["addSuccessMessage", "addErrorMessage"]),
+    disableDates(date) {
+      return date < Date.now();
+    },
     handleClick() {
       this.$refs.fileChooser.click();
     },
     handleChange() {
       this.image = this.$refs.fileChooser.files[0];
-    },
-    resetForm() {
-      this.image = null;
-      this.title = "";
-      this.detail = "";
-      this.dead_line = "";
-      this.budget = "";
-      this.category_id = "";
     },
     submitForm() {
       const formData = new FormData();
@@ -134,7 +134,7 @@ export default {
 
       formData.append("title", this.title);
       formData.append("detail", this.detail);
-      formData.append("dead_line", this.dead_line);
+      formData.append("dead_line", new Date(this.dead_line).toISOString());
       formData.append("budget", this.budget);
       formData.append("category_id", Number(this.category_id));
 
@@ -143,7 +143,7 @@ export default {
         .then((response) => {
           this.addSuccessMessage(MESSAGES.PROJECT.SUCCESS);
 
-          this.resetForm();
+          this.$router.replace("/dashboard");
         })
         .catch((error) => {
           this.addErrorMessage(MESSAGES.PROJECT.FAILED);
