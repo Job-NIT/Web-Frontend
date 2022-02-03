@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="row mx-0 px-3 justify-content-center">
     <EditProfileForm />
   </div>
 </template>

@@ -1,18 +1,17 @@
 <template>
-  <div>
+  <div class="d-flex justify-content-center">
     <NuxtLink
       :to="`/profile/${freelancer.id}`"
-      class="row mx-0 jn-border jn-btn-outline"
     >
-      <div class="col-3 p-0">
+      <div>
         <img
-          class="jn-card-image jn-border-left"
+          class="jn-freelancer-img jn-border rounded-circle"
           :src="imageSrc"
           alt="Freelancer image"
         />
       </div>
 
-      <div class="col d-flex align-items-center justify-content-center">
+      <div class="text-center">
         {{ full_name }}
       </div>
     </NuxtLink>

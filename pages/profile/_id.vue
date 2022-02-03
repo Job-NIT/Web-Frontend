@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div v-if="user" class="card jn-border">
+  <div class="row mx-0 px-3 justify-content-center">
+    <div v-if="user" class="col-sm-9 col-md-6 p-0 card jn-border">
       <div>
         <img
           class="card-img-top img-fluid jn-border-bottom jn-detail-card-image"

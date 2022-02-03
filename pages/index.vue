@@ -4,7 +4,7 @@
     <p>وبسایتی برای فری لنسرها و کارفرماها برای دسترسی به پروژه های</p>
     <p>مختلف وکسب درآمد برای افراد بامهارت</p>
 
-    <div>
+    <div v-if="!isLoggedIn">
       <NuxtLink to="/auth/login" class="btn w-25 jn-btn-primary">
         ورود
       </NuxtLink>
@@ -22,5 +22,10 @@
 export default {
   layout: "three_column",
   auth: false,
+  computed: {
+    isLoggedIn() {
+      return this.$auth.loggedIn;
+    }
+  }
 };
 </script>

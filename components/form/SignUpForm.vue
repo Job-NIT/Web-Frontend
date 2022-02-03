@@ -157,10 +157,20 @@ export default {
       this.addSuccessMessage(MESSAGES.REGISTER.SUCCESS);
     },
     handleError(error) {
-      const message =
-        error.response && error.response.status === 400
-          ? MESSAGES.REGISTER.FAILED
-          : MESSAGES.GLOBAL.ERROR;
+      let message = MESSAGES.REGISTER.FAILED;
+      const response = error.response;
+
+      if (response && response.status === 400) {
+        const errors = response.data.user;
+
+        if (errors.username) {
+          message = MESSAGES.REGISTER.USERNAME;
+        } else if (errors.email) {
+          message = MESSAGES.REGISTER.EMAIL;
+        } else if (errors.password) {
+          message = MESSAGES.REGISTER.PASSWORD;
+        }
+      }
 
       this.addErrorMessage(message);
     },

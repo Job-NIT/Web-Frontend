@@ -71,11 +71,14 @@
 
 .jn-msg-list {
   position: fixed;
-  top: 100px;
-  left: 0;
+  bottom: 0;
+  left: 50%;
   padding: 0 20px;
   z-index: 1000;
   width: 30%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column-reverse;
 }
 @media screen and (max-width: 1200px) {
   .jn-msg-list {
@@ -97,4 +100,10 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+
+.jn-freelancer-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }

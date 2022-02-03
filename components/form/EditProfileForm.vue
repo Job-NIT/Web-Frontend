@@ -1,6 +1,6 @@
 <template>
   <form
-    class="mx-4 mt-2 text-center py-3 px-4 jn-bg-gradiant jn-border"
+    class="col-sm-9 col-md-6 mt-2 text-center py-3 px-4 jn-bg-gradiant jn-border"
     @submit.prevent="formSubmit"
   >
     <h5>ویرایش پروفایل</h5>
