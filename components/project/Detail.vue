@@ -77,12 +77,12 @@
           </button>
         </div>
 
-        <NuxtLink
-          to="/projects"
+        <div
           class="btn w-50 d-block mx-auto jn-btn-primary"
+          @click="goBack"
         >
-          بازگشت به لیست پروژه ها
-        </NuxtLink>
+          بازگشت
+        </div>
       </div>
     </div>
   </div>
@@ -133,6 +133,9 @@ export default {
   },
   methods: {
     ...mapActions("message", ["addSuccessMessage", "addErrorMessage"]),
+    goBack() {
+      this.$router.back();
+    },
     handleError(error) {
       this.addErrorMessage(MESSAGES.PROJECT_REQUEST.FAILED);
     },

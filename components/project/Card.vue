@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="card-body">
-      <h4 class="card-title">{{ project.title }}</h4>
+      <h4 class="card-title text-truncate">{{ project.title }}</h4>
 
       <p class="card-text text-truncate">{{ project.detail }}</p>
 

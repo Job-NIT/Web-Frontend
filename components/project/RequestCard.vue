@@ -6,7 +6,7 @@
       alt="Card image cap"
     />
     <div class="card-body">
-      <h4 class="card-title">
+      <h4 class="card-title text-truncate">
         {{ full_name }}
       </h4>
 

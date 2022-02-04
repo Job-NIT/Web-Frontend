@@ -38,6 +38,7 @@ a:hover {
 }
 .navbar-right .avatar {
   margin-left: 20px;
+  object-fit: cover;
 }
 .navbar-right .navbar-link {
   color: white;
